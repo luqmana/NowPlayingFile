@@ -1,0 +1,9 @@
+[Plugin]
+Loader=python
+Module=nowplaying-file
+IAge=2
+Depends=rb
+Name=Now Playing File
+Description=Creates a file document that stores current song information (defaults to: "/tmp/nowplaying.out").
+Authors=Luqman Aden <laden@uwaterloo.ca>
+Copyright=Copyright © 2011 Luqman Aden
