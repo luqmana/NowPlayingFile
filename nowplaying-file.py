@@ -1,4 +1,5 @@
-# 
+# coding: utf-8
+#
 # Copyright (C) 2011 - Luqman Aden
 #
 # This program is free software; you can redistribute it and/or modify
@@ -130,5 +131,5 @@ class NowPlayingFilePlugin (GObject.Object, Peas.Activatable):
 	def write_file_from_songinfo(self, properties):
 	
 		output_file = open(self.out_file, "w")
-		print >> output_file, properties["title"] + " - " + properties["artist"] + " (" + properties["album"] + ")",
+		print >> output_file, properties["title"] + " - " + properties["artist"] + " (" + properties["album"] + ") ♫",
 		output_file.close()
