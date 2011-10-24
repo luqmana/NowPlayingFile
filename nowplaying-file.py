@@ -119,6 +119,11 @@ class NowPlayingFilePlugin (GObject.Object, Peas.Activatable):
 			(k, self.current_entry.get_string(v))
 			for k, v in properties.items()
 		)
+
+		if self.current_entry.get_entry_type().props.category == RB.RhythmDBEntryCategory.STREAM:
+			
+			properties["title"] = self.db.entry_request_extra_metadata(self.current_entry, STREAM_SONG_TITLE)
+			properties["album"] = self.current_entry.get_string(RB.RhythmDBPropType.TITLE)
 			
 		self.write_file_from_songinfo(properties)
 			
@@ -131,5 +136,8 @@ class NowPlayingFilePlugin (GObject.Object, Peas.Activatable):
 	def write_file_from_songinfo(self, properties):
 	
 		output_file = open(self.out_file, "w")
-		print >> output_file, properties["title"] + " - " + properties["artist"] + " (" + properties["album"] + ") ♫",
+		if "artists" not in properties:
+			print >> output_file, properties["title"] + " - " + properties["artist"] + " (" + properties["album"] + ") ♫",
+		else:
+			print >> output_file, properties["title"] + "(" + properties["album"] + ") ♫",
 		output_file.close()
